@@ -1,6 +1,6 @@
 angular.module('demo', [])
-.controller('Hello', function($scope, $http) {
-    $http.get('http://rest-service.guides.spring.io/greeting').
+.controller('fetch_rest', function($scope, $http) {
+    $http.get('http://......').
         then(function(response) {
             $scope.greeting = response.data;
         });
