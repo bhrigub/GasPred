@@ -1,0 +1,245 @@
+<!doctype html>
+
+
+<html lang="en">
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Last Week', 2.50],
+          ['Today', 2.80],
+          ['Prediction', 2.99]
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 9, redTo: 10,
+          yellowFrom:7.5, yellowTo: 9,
+          minorTicks: 5,
+          max: 10
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div1'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1, 4 + Math.round(6 * Math.random()));
+          chart.draw(data, options);
+        }, 13000);
+        setInterval(function() {
+          data.setValue(1, 1, 4 + Math.round(6 * Math.random()));
+          chart.draw(data, options);
+        }, 5000);
+        setInterval(function() {
+          data.setValue(2, 1, 6 + Math.round(2 * Math.random()));
+          chart.draw(data, options);
+        }, 26000);
+      }
+    </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Ground Truth', 'Predicted Gas Price'],
+          ['04-02-2013',  100,      200],
+          ['10-22-2014',  117,      260],
+          ['03-12-2015',  260,       112],
+          ['02-08-2016',  130,      240]
+        ]);
+
+        var options = {
+          title: 'Gas Price',
+          hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="rest_fetch.js"></script>
+  <meta charset="utf-8">
+
+  <title>Gas Price Predictor</title>
+  <meta name="description" content="Gas Price Predictor">
+  <meta name="author" content="Bhrigu">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <!-- navbar -->
+ <nav class="navbar navbar-expand-lg fixed-top">
+ <a class="navbar-brand nav-mainlink"  href="#">Gas Price Predictor</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+ <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse " id="navbarSupportedContent">     <ul class="navbar-nav mr-4">
+ <li class="nav-item">
+     <a class="nav-link" data-value="about" href="#" >About</a>        </li>
+<li class="nav-item">
+    <a class="nav-link " data-value="prediction" href="#">Customized Gas Price Prediction</a>
+ </li>
+ <li class="nav-item">
+   <a class="nav-link " data-value="team" href="#">Team</a>       </li>
+</ul>
+</div></nav>
+
+<header class="header">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="description text-cente">
+    <h1>    Gas Price Predictor
+        <p>    Current price prediction? Maybe include a price prediction graph showcasing the expected trend?
+    </p>
+     <button class="btn btn-outline-secondary btn-lg" onkeypress="#prediction">See more</button>   </h1>
+    </div>
+  </div>
+
+</header>
+<!-- about -->
+<div class="about" id="about">
+     <h1 class="text-center">About</h1>
+ <div class="container">
+  <div class="row">
+    <!--leftside-->
+    <div class="col-lg-2 col-md-2 col-sm-12">
+    </div>
+<div class="col-lg-4 col-md-4 col-sm-12">
+   <!--<img src="images/grap1.jpg" class="img-fluid">
+   <span class="text-justify">Gas Price Predictor</span> -->
+</div>
+<div class="row">
+      <!--rightside-->
+      <div class="col-lg-1 col-md-1 col-sm-12">
+      </div>
+   <div class="col-lg-4 col-md-4 col-sm-12">
+    <!--<img src="images/graphw.jpg" class="img-fluid">-->
+      <div id="chart_div1" style="width: 400px; height: 120px;"></div>
+    <span class="text-justify">Gas Price Predictor</span>
+   </div>
+   <div class="col-lg-6 col-md-6 col-sm-12 desc">
+    <h3>Gas Price Predictor</h3>
+    <p>
+      What data is used? What sort of ML is implemented? The work flow of the service? Technology used? Idea and impact.
+    </p>
+   </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- prediction -->
+<div class="prediction"  id="prediction">
+     <h1 class="text-center">Customized Gas Price Prediction</h1>
+     <p class="text-center">
+       Customized prediction of gas prices by selecting the initial date and number of days to predict.
+     </p>
+     <!--<button type="button" class="btn btn-outline-primary">1 day</button>
+     <button type="button" class="btn btn-outline-primary">10 days</button>
+     <button type="button" class="btn btn-outline-primary">30 days</button>
+     <button type="button" class="btn btn-outline-primary">100 days</button>
+     <button type="button" class="btn btn-outline-primary">365 days</button>-->
+     <form>
+      <div class="container">
+       <div class="row">
+         <div class="col-lg-2 col-md-2 col-sm-12">
+         </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <div class="form-group">
+             <label >Start Date</label>
+             <input type="date" name="bday" max="3000-12-31"
+                    min="1000-01-01" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-12">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Number of Days</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>10</option>
+                <option>30</option>
+                <option>100</option>
+                <option>180</option>
+                <option>365</option>
+              </select>
+            </div>
+          </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+      </div>
+      </div>
+    </form>
+ <div class="container">
+  <div class="row">
+   <div class="col-lg-2 col-md-2 col-sm-12">
+   </div>
+
+
+<div class="col-lg-8 col-md-8 col-sm-12">
+    <!--<img src="images/graph.jpg" class="img-fluid">*/-->
+    <div id="chart_div2" style="width: 100%; height: 500px;"></div>
+   </div>
+   <div class="col-lg-2 col-md-2 col-sm-12">
+   </div>
+
+  </div>
+ </div>
+</div>
+
+<!-- Team section -->
+<div class="team" id="team">
+ <div class="container">
+    <h1 class="text-center">Our Team</h1>
+  <div class="row">
+   <div class="col-lg-4 col-md-4 col-sm-12 item">
+    <img src="images/ppl.jpg" class="img-fluid" alt="Bhrigu Bhargava">
+    <div class="des">
+      Bhrigu Bhargava
+     </div>
+    <span class="text-muted">bhrigub1@umbc.edu</span>
+   </div>
+   <div class="col-lg-4 col-md-4 col-sm-12 item">
+    <img src="images/ppl.jpg" class="img-fluid" alt="Jeremy Suon">
+    <div class="des">
+       Jeremy Suon
+     </div>
+    <span class="text-muted">jsuon1@umbc.edu</span>
+   </div>
+   <div class="col-lg-4 col-md-4 col-sm-12 item">
+    <img src="images/ppl.jpg" class="img-fluid" alt="Ranjith Kamalanathan">
+    <div class="des">
+      	Ranjith Kamalanathan
+     </div>
+    <span class="text-muted">rkamala1@umbc.edu</span>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+
+  <script type="text/javascript" src='js/main.js'></script>
+</body>
+</html>
