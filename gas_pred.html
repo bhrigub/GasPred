@@ -151,28 +151,28 @@
      <button type="button" class="btn btn-outline-primary">30 days</button>
      <button type="button" class="btn btn-outline-primary">100 days</button>
      <button type="button" class="btn btn-outline-primary">365 days</button>-->
-     <form>
+     <form id="userInputForm" action="" method="post">
       <div class="container">
        <div class="row">
          <div class="col-lg-2 col-md-2 col-sm-12">
          </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-              <label for="exampleFormControlInput1">Email address</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <label for="emailinput">Email address</label>
+              <input type="email" class="form-control" id="emailinput" placeholder="name@example.com">
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-             <label >Start Date</label>
-             <input type="date" name="bday" max="3000-12-31"
-                    min="1000-01-01" class="form-control">
+             <label for="startdateinput" >Start Date</label>
+             <input type="date" name="startdate" max="3000-12-31"
+                    min="1000-01-01" class="form-control" id="startdateinput">
             </div>
           </div>
           <div class="col-lg-2 col-md-2 col-sm-12">
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Number of Days</label>
-              <select class="form-control" id="exampleFormControlSelect1">
+              <label for="daycountinput">Number of Days</label>
+              <select class="form-control" id="daycountinput">
                 <option>1</option>
                 <option>10</option>
                 <option>30</option>
@@ -186,7 +186,7 @@
         <div class="col-lg-4 col-md-4 col-sm-12">
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        <button class="btn btn-primary btn-lg btn-block" id="submitButton" disabled>Submit</button>
         </div>
       </div>
       </div>

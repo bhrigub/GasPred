@@ -1,9 +1,11 @@
 $(document).ready(function(){
- $('.header').height($(window).height());
+ $('.header').height($(window).height())
 })
 $(".navbar a").click(function(){
   $("body,html").animate({
    scrollTop:$("#" + $(this).data('value')).offset().top
-  },1000)
-
+ },1000);
  })
+ $("#submitButton").click(function(){
+   alert("hi")
+ });
