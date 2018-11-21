@@ -9,3 +9,10 @@ $(".navbar a").click(function(){
  $("#submitButton").click(function(){
    alert("hi")
  });
+ $('#userInputForm').submit(function() {
+    var $inputs = $('#userInputForm :input');
+    var values = {};
+    $inputs.each(function() {
+        values[this.name] = $(this).val();
+    });
+});
