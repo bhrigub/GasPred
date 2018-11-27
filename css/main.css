@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family="Oswald"');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 .navbar{ background:#3E9BE1;}
 .nav-link , .navbar-brand{ color: #f4f4f4; cursor: pointer;}
 .nav-link{ margin-right: 1em !important;}

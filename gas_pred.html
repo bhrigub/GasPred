@@ -1,6 +1,4 @@
 <!doctype html>
-
-
 <html lang="en">
 <head>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -44,30 +42,38 @@
       }
     </script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart2);
+    /*var jsonData=[
+    ['Date', 'Ground Truth', 'Predicted Gas Price'],
+    ['04-02-2013',  100,      200],
+    ['10-22-2014',  117,      260],
+    ['03-12-2015',  260,       112],
+    ['03-12-2015',  2640,       1152],
+  ];*/
+    function drawChart2(jsonData) {
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Date', 'Ground Truth', 'Predicted Gas Price'],
-          ['04-02-2013',  100,      200],
-          ['10-22-2014',  117,      260],
-          ['03-12-2015',  260,       112],
-          ['02-08-2016',  130,      240]
-        ]);
+      /*$("#submitButton").click(function(){
+        var jsonData = JSON.parse(localStorage.getItem("valReceived"));
+      }).delay(1000);
+*/
+      var data = google.visualization.arrayToDataTable(jsonData);
 
-        var options = {
-          title: 'Gas Price',
-          hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
 
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
-        chart.draw(data, options);
-      }
+
+
+      var options = {
+        title: 'Gas Price',
+        hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
+      chart.draw(data, options);
+    }
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="rest_fetch.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="rest_fetch.js"></script>-->
   <meta charset="utf-8">
 
   <title>Gas Price Predictor</title>
@@ -102,9 +108,9 @@
   <div class="container">
     <div class="description text-cente">
     <h1>    Gas Price Predictor
-        <p>    Current price prediction? Maybe include a price prediction graph showcasing the expected trend?
+        <p>    This service assists in travel management, investment, and economic decision making by predicting gas prices.
     </p>
-     <button class="btn btn-outline-secondary btn-lg" onkeypress="#prediction">See more</button>   </h1>
+     <button class="btn btn-outline-secondary btn-lg" onclick="#prediction"> <a id="navigateDown" data-value="predictio href="#">See more</a></button>   </h1>
     </div>
   </div>
 
@@ -125,9 +131,9 @@
       <!--rightside-->
       <div class="col-lg-1 col-md-1 col-sm-12">
       </div>
-   <div class="col-lg-4 col-md-4 col-sm-12">
+   <div class="col-lg-4 col-md-4 col-sm-12" id="chart_div1">
     <!--<img src="images/graphw.jpg" class="img-fluid">-->
-      <div id="chart_div1" style="width: 400px; height: 120px;"></div>
+      <div style="width: 400px; height: 120px;"></div>
     <span class="text-justify">Gas Price Predictor</span>
    </div>
    <div class="col-lg-6 col-md-6 col-sm-12 desc">
@@ -158,21 +164,21 @@
          </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-              <label for="emailinput">Email address</label>
-              <input type="email" class="form-control" id="emailinput" placeholder="name@example.com">
+              <label for="emailinput">Email</label>
+              <input name="email1" type="email" class="form-control" id="emailinput" placeholder="name@example.com">
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
              <label for="startdateinput" >Start Date</label>
-             <input type="date" name="startdate" max="3000-12-31"
+             <input type="date" name="startdate1" max="3000-12-31"
                     min="1000-01-01" class="form-control" id="startdateinput">
             </div>
           </div>
           <div class="col-lg-2 col-md-2 col-sm-12">
             <div class="form-group">
               <label for="daycountinput">Number of Days</label>
-              <select class="form-control" id="daycountinput">
+              <select class="form-control" id="daycountinput" name="daycount1">
                 <option>1</option>
                 <option>10</option>
                 <option>30</option>
@@ -188,9 +194,23 @@
         <div class="col-lg-4 col-md-4 col-sm-12">
         <button class="btn btn-primary btn-lg btn-block" id="submitButton">Submit</button>
         </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <p>Email:<label  id="viewvariables1"></label></p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <p>Start date:<label  id="viewvariables2"></label></p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <p>Day count:<label  id="viewvariables3"></label></p>
+        </div>
       </div>
       </div>
+
     </form>
+
+
  <div class="container">
   <div class="row">
    <div class="col-lg-2 col-md-2 col-sm-12">
@@ -199,7 +219,7 @@
 
 <div class="col-lg-8 col-md-8 col-sm-12">
     <!--<img src="images/graph.jpg" class="img-fluid">*/-->
-    <div id="chart_div2" style="width: 100%; height: 500px;"></div>
+    <div id="chart_div2" style="width:700px; height: 500px;"></div>
    </div>
    <div class="col-lg-2 col-md-2 col-sm-12">
    </div>
