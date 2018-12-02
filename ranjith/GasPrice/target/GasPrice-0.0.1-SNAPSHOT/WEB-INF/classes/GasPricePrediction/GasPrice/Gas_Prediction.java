@@ -2,7 +2,9 @@ package GasPricePrediction.GasPrice;
 
 import java.util.*;
 import java.io.*;
+import java.net.URL;
 import java.util.Random;
+
 
 public class Gas_Prediction{	
 	
@@ -266,7 +268,8 @@ public class Gas_Prediction{
 		init_start = day+(month*30)+((year-1990)*365);
 	  
 		try{
-			BufferedReader br = new BufferedReader(new FileReader("PET_PRI_GND_DCUS_NUS_W.csv"));
+			InputStream inputStream = getClass().getClassLoader().getResourceAsStream("PET_PRI_GND_DCUS_NUS_W.csv");
+			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream ));
 			br.readLine();
 			br.readLine();
 			line = br.readLine();
