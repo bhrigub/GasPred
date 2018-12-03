@@ -10,13 +10,12 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Last Week', 2.50],
           ['Today', 2.80],
           ['Prediction', 2.99]
         ]);
 
         var options = {
-          width: 400, height: 120,
+          width: 500, height: 180,
           redFrom: 9, redTo: 10,
           yellowFrom:7.5, yellowTo: 9,
           minorTicks: 5,
@@ -28,17 +27,13 @@
         chart.draw(data, options);
 
         setInterval(function() {
-          data.setValue(0, 1, 4 + Math.round(6 * Math.random()));
-          chart.draw(data, options);
-        }, 13000);
-        setInterval(function() {
           data.setValue(1, 1, 4 + Math.round(6 * Math.random()));
           chart.draw(data, options);
         }, 5000);
         setInterval(function() {
-          data.setValue(2, 1, 6 + Math.round(2 * Math.random()));
+          data.setValue(1, 1, 6 + Math.round(2 * Math.random()));
           chart.draw(data, options);
-        }, 26000);
+        }, 2600);
       }
     </script>
     <script type="text/javascript">
@@ -99,6 +94,8 @@
     <a class="nav-link " data-value="prediction" href="#">Customized Gas Price Prediction</a>
  </li>
  <li class="nav-item">
+     <a class="nav-link" data-value="applications" href="#" >Applications</a>   </li>
+ <li class="nav-item">
    <a class="nav-link " data-value="team" href="#">Team</a>       </li>
 </ul>
 </div></nav>
@@ -110,7 +107,7 @@
     <h1>    Gas Price Predictor
         <p>    This service assists in travel management, investment, and economic decision making by predicting gas prices.
     </p>
-     <button class="btn btn-outline-secondary btn-lg" onclick="#prediction"> <a class="" id="navigateDown" data-value="prediction" href="#">See more</a></button>   </h1>
+     <button class="btn btn-outline-secondary btn-lg" onclick="#prediction"> <a id="navigateDown" data-value="prediction" href="#" style="color: #fff">See more</a></button>   </h1>
     </div>
   </div>
 
@@ -139,9 +136,11 @@
    <div class="col-lg-6 col-md-6 col-sm-12 desc">
     <h3>Gas Price Predictor</h3>
     <p>
-      What data is used? What sort of ML is implemented? The work flow of the service? Technology used? Idea and impact.
-    </p>
+      We use gas price data from U.S. Energy Information Administration (EIA) and implement Linear Regression and Exponential Smoothing to perform future price prediction. The service takes input from the user in form of start date and number of day’s prediction required and visualizes the price prediction in form of a chart. The user can hover over the chart to see the price for particular dates.</p>
+     
    </div>
+   
+    </div>
   </div>
 </div>
 </div>
@@ -170,7 +169,7 @@
           </div>
           <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
-             <label for="startdateinput" >Start Date</label>
+             <label for="startdateinput">Start Date</label>
              <input type="date" name="startdate1" max="3000-12-31"
                     min="1000-01-01" class="form-control" id="startdateinput">
             </div>
@@ -183,8 +182,8 @@
                 <option>10</option>
                 <option>30</option>
                 <option>100</option>
-                <option>180</option>
-                <option>365</option>
+                <option>180 (Experimental)</option>
+                <option>365 (Experimental)</option>
               </select>
             </div>
           </div>
@@ -192,11 +191,42 @@
         <div class="col-lg-4 col-md-4 col-sm-12">
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12">
-        <button class="btn btn-primary btn-lg btn-block" id="submitButton">Submit</button>
+        <button class="btn btn-primary btn-lg btn-block submitButton1" id="submitButton">Submit</button>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12">
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
+
+      </div>
+    </div>
+      <br>
+     <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12" style="padding-left: 65px">        
+        <div class="btn-group btn-group-toggle" data-toggle="buttons"  id="chart_div3">
+          <label class="btn btn-secondary active" id="lab1">
+            <input type="radio" name="options" id="option1" autocomplete="off"> Combined
+          </label>
+          <label class="btn btn-secondary" id="lab2">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Regular
+          </label>
+          <label class="btn btn-secondary" id="lab3">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Midgrade
+          </label>
+          <label class="btn btn-secondary" id="lab4">
+            <input type="radio" name="options" id="option4" autocomplete="off"> Premium
+          </label>
+          <label class="btn btn-secondary" id="lab5">
+            <input type="radio" name="options" id="option5" autocomplete="off"> Diesel
+          </label>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+        </div>
+      </div>
+    </div>
+        <!--<div class="col-lg-4 col-md-4 col-sm-12">
           <p>Email:<label  id="viewvariables1"></label></p>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12">
@@ -204,12 +234,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12">
           <p>Day count:<label  id="viewvariables3"></label></p>
-        </div>
-      </div>
-      </div>
-
-    </form>
-
+        </div>-->
 
  <div class="container">
   <div class="row">
@@ -226,33 +251,71 @@
 
   </div>
  </div>
-</div>
+</form>
+      </div>
 
+
+<!--Application section -->
+<div class="applications" id="applications">
+     <h1 class="text-center">Applications</h1>
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12">
+   </div>
+   <div class="col-lg-9 col-md-9 col-sm-12"> 
+   <div class="desc2">  
+    <p>This predictor can be utilized in the following domains:</p>
+    <p>Commercial-</p>
+   <ul>
+        <li>Retailers: Online shopping increase dramatically along with gas prices. Retailers can plan promotional offers, sales and shipping logistics based on gas prices.</li>
+        <li>Realtors: Houses in areas with longer commutes tend to sell at lower prices and homes with shorter commutes tend to sell at higher prices when gasoline goes up.</li>
+        <li>Public Transportation: Higher gas prices result in noticeable increases in public transportation ridership. Increase in commuters require planning of transit services and vehicle allocation for busy routes.</li>
+        <li>Work and School Week Planning: Some businesses, including colleges, have elected to go with four-day weeks to limit their employees' or students' financial burden for commuting. For example, in 2008, Southwestern Community College announced a four-day school week to help students and staff save on gas money.</li>
+        <li>New Jobs Hiring: Rising gas prices force some businesses to reevaluate their hiring plans, holding off because they are uncertain about the economy's health. Less spending results in decreased sales, both of which can influence a company's ability to hire.</li>
+      </ul>
+      <p>Civilian-</p>
+    <ul>
+      <li> Travel Planning: Gas price prediction can benefit people planning road trips and help in pocket friendly travel.</li>
+      <li>Real Estate Sale: The ideal time to sale real estate can be calculated with respect to the gas prices and benefit a civilian to maximize the profit.</li>
+      <li>Expenditure Planning: In 2015, it was estimated that consumers spent 80 cents of every dollar saved on gas on personal consumption, according to a JPMorgan Chase report. More the gas price, lesser dining out and lesser shopping.</li>
+    </ul>
+  </div>
+      </div>
+     <div class="col-lg-1 col-md-1 col-sm-12">
+   </div> 
+      
+    </div>
+  </div>
+</div>
 <!-- Team section -->
 <div class="team" id="team">
  <div class="container">
     <h1 class="text-center">Our Team</h1>
   <div class="row">
-   <div class="col-lg-4 col-md-4 col-sm-12 item">
+    <div class="col-lg-2 col-md-2 col-sm-12">
+   </div>
+   <div class="col-lg-3 col-md-3 col-sm-12 item">
     <img src="images/ppl.jpg" class="img-fluid" alt="Bhrigu Bhargava">
     <div class="des">
       Bhrigu Bhargava
      </div>
     <span class="text-muted">bhrigub1@umbc.edu</span>
    </div>
-   <div class="col-lg-4 col-md-4 col-sm-12 item">
+   <div class="col-lg-3 col-md-3 col-sm-12 item">
     <img src="images/ppl.jpg" class="img-fluid" alt="Jeremy Suon">
     <div class="des">
        Jeremy Suon
      </div>
     <span class="text-muted">jsuon1@umbc.edu</span>
    </div>
-   <div class="col-lg-4 col-md-4 col-sm-12 item">
+   <div class="col-lg-3 col-md-3 col-sm-12 item">
     <img src="images/ppl.jpg" class="img-fluid" alt="Ranjith Kamalanathan">
     <div class="des">
       	Ranjith Kamalanathan
      </div>
     <span class="text-muted">rkamala1@umbc.edu</span>
+   </div>
+   <div class="col-lg-1 col-md-1 col-sm-12">
    </div>
   </div>
  </div>
