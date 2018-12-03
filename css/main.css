@@ -10,7 +10,7 @@
 .bg-dark{background-color:#343a40!important}
 .bg-primary{background-color:#007bff!important}
 
-html,h1,h2,h3,h4,h5,h6,p,div span,a{
+html,h1,h2,h3,h4,h5,h6,p,div span,a, li,ul{
  font-family: "Oswald";
 }
 /*header style*/
@@ -48,6 +48,21 @@ html,h1,h2,h3,h4,h5,h6,p,div span,a{
  background:#3E9BE1;
  color:#fff;
 }
+.prediction .btn-secondary{
+ border:1px  solid #3E9BE1;
+ background:#3E9BE1;
+ color:#fff;
+}
+.submitButton1 {
+ border:1px  solid #3E9BE1;
+ background:#3E9BE1;
+ color:#fff;
+}
+.prediction .btn-secondary .active{
+ border:1px  solid #007bff;
+ background:#007bff;
+ color:#fff;
+}
 .about{
  margin: 4em 0;
  padding: 1em;
@@ -76,10 +91,36 @@ html,h1,h2,h3,h4,h5,h6,p,div span,a{
  color: #3E9BE1;
 }
 .about .desc p{
- line-height:2;
+ line-height:1.5;
  color:#888;
 }
-/*prediction*/
+.applications h1{
+ color:#3E9BE1;
+ margin: 2em;
+}
+.applications .desc2 ul li{
+ line-height:1.5;
+ color:#888;
+ margin-bottom: 0;
+}
+.about .desc ul li{
+ line-height:1.5;
+ color:#888;
+ margin-bottom: 0;
+}
+/*.about .desc ul {
+  color:#666;
+ font-size: 18px;
+ width: 50%;
+ line-height: 1.5;
+}
+.about .desc li {
+  color:#666;
+ font-size: 18px;
+ width: 50%;
+ line-height: 1.5;
+}*/
+/*Prediction*/
 .prediction{
  margin: 4em 0;
     position: relative;
@@ -93,6 +134,17 @@ html,h1,h2,h3,h4,h5,h6,p,div span,a{
   width: 100%;
   margin: 1em;
 }
+/*Application*/
+.applications .desc2 ul li{
+ line-height:1.5;
+ color:#888;
+ margin-bottom: 0;
+}
+.applications .desc2 p{
+ line-height:1.5;
+ color:#888;
+}
+/* Team */
 .team{
  margin: 4em 0;
  position: relative;
